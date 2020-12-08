@@ -1,0 +1,14 @@
+{
+  "name": "identity-api-v1",
+  "scripts": {
+    "test": "./node_modules/.bin/cucumber-js test/integration/features"
+  },
+  "engines": {
+    "node": ">=14.1.0"
+  },
+  "devDependencies": {
+    "apickli": "^2.3.3",
+    "puppeteer": "^3.3.0",
+    "cucumber": "^6.0.5"
+  }
+}

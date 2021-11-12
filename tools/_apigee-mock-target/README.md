@@ -8,16 +8,16 @@ to generate a mock target based on an OpenAPI Spec.
 It is very useful for API developers to work with mocks based on Open API
 specs.
 Many different NodeJS frameworks allow the creation of "smart" mock targets
-base on Open API specs.
-In this example, we have choose to use [openapi-mock-express-middleware](https://www.npmjs.com/package/openapi-mock-express-middleware),
-which is NodeJS module that can generate an express mock server from an
+based on Open API specs.
+In this example, we have choosen to use [openapi-mock-express-middleware](https://www.npmjs.com/package/openapi-mock-express-middleware),
+which is a NodeJS module that can generate an express mock server from an
 Open API 3.0 documentation.
 
 ## Prerequisites
 
-- Create a free Apigee Account
-- Git
-- Install Maven and Apigee [sackmesser](../apigee-sackmesser)
+- Create a free Apigee account in order to use Apigee X or hybrid
+- Install Git
+- Install Maven
 - A Google Cloud account (trial or paid)
 
 ## Quickstart Usage
@@ -29,21 +29,47 @@ export APIGEE_X_HOSTNAME=xxx
 export APIGEE_X_ORG=xxx
 export APIGEE_X_ENV=xxx
 export GCP_PROJECT=xxx
-export OPEN_API_SPEC_MOCK=xxx
 
 git clone -b feature/apigee-mock-target https://github.com/JoelGauci/devrel.git
-sh ./devrel/tools/_apigee-mock-target/pipeline.sh
+
+cd ./devrel/tools/_apigee-mock-target
 ```
 
+At this point you need to define the ```OPEN_API_SPEC_MOCK``` env. variable.
 The ```OPEN_API_SPEC_MOCK``` refers to the relative path of the Open
-Api spec file you want to use to implement the mock target.
+API spec file you want to use to implement the mock target.
 As an example, you can create a ```specs``` directory in the
 current folder and put your Open API specs (let's try [petstore.yaml](https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.0/petstore.yaml))
 into it. In that case the ```OPEN_API_SPEC_MOCK``` is defined using
 the following command:
 
 ```sh
+mkdir specs && cd ./specs
+
+curl -L0 https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.0/petstore.yaml > petstore.yaml
+
+cd ..
+
 export OPEN_API_SPEC_MOCK=./specs/petstore.yaml
+```
+
+Before running the pipeline, please update your ```PATH``` in order
+to add ```sackmesser``` to it (if you have not installed it yet!)
+
+```sh
+export PATH="$PATH":"../apigee-sackmesser/bin/"
+```
+
+Install xmllint
+
+```sh
+sudo apt install libxml2-utils
+```
+
+Now you can run the ```pipeline.sh``` script
+
+```sh
+./pipeline.sh
 ```
 
 ## Result

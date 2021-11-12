@@ -98,7 +98,7 @@ gcloud auth configure-docker -q
 cat > Dockerfile <<EOF
 FROM node:12-alpine3.11
 WORKDIR /usr/src/app
-ADD package.json ./
+ADD package*.json ./
 ADD $OPEN_API_SPEC_MOCK ./openapi.yaml
 RUN npm install --only=production
 COPY . ./

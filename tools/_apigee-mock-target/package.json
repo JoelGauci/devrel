@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "openapi-mock-express-middleware": "^3.0.2"
+  }
+}

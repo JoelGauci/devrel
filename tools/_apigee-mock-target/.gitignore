@@ -1,0 +1,6 @@
+Dockerfile
+node_modules
+npm-debug.log
+api-proxy-v1
+specs
+credentials.json

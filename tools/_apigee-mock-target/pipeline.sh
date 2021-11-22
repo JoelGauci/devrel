@@ -13,46 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-####################################
-### function: generate_edge_json ###
-####################################
-generate_edge_json() {
-  ENV_NAME=$1
-  cat <<EOF >> "$SCRIPTPATH/api-proxy-v1/edge.json"
-{
-    "version": "1.0",
-    "envConfig": {
-        "$ENV_NAME": {
-            "caches": [
-            {
-                "name": "gcp-tokens",
-                "description": "Cahe for GCP Tokens",
-                "expirySettings": {
-                    "timeoutInSec": {
-                        "value": "300"
-                    },
-                    "valuesNull": false
-                }
-            }
-            ],
-            "kvms": [
-			      {
-                "name": "oas-mock-target-service-accounts",
-                "encrypted": "true",
-                "entry": [
-                {
-                    "name": "cloud-run",
-                    "value": $GCP_SA_KEY
-                }
-			          ]
-			      }
-            ]
-        }
-    }
-}
-EOF
-}
-
 ###
 # Apigee Mock Target 
 ###
@@ -81,7 +41,7 @@ GCP_REGION=${GCP_REGION:-europe-west1}
 # Check for required tools on path
 ###
 
-for TOOL in gcloud jq node npm sackmesser xmllint; do
+for TOOL in gcloud jq docker node npm sackmesser xmllint; do
   if ! which $TOOL > /dev/null; then
     echo "Please ensure $TOOL is installed and on your PATH"
     exit 1
@@ -96,13 +56,10 @@ gcloud services enable containerregistry.googleapis.com run.googleapis.com
 gcloud auth configure-docker -q
 
 cat > Dockerfile <<EOF
-FROM node:12-alpine3.11
-WORKDIR /usr/src/app
-ADD package*.json ./
-ADD $OPEN_API_SPEC_MOCK ./openapi.yaml
-RUN npm install --only=production
-COPY . ./
-CMD [ "node", "app.js" ]
+FROM stoplight/prism:4
+ADD $OPEN_API_SPEC_MOCK /usr/src/prism/openapi.yaml
+EXPOSE 4010
+CMD ["mock","-d","-h","'0.0.0.0'","/usr/src/prism/openapi.yaml"]
 EOF
 
 docker build -t gcr.io/"$GCP_PROJECT"/apigee-mock-target:latest .
@@ -115,6 +72,7 @@ docker push gcr.io/"$GCP_PROJECT"/apigee-mock-target:latest
 gcloud run deploy apigee-mock-target \
 --image=gcr.io/"$GCP_PROJECT"/apigee-mock-target \
 --platform=managed \
+--port 4010 \
 --region="$GCP_REGION" \
 --no-allow-unauthenticated
 
@@ -128,23 +86,12 @@ TARGET_URL=$(gcloud run services describe apigee-mock-target --platform managed 
 gcloud iam service-accounts create oas-mock-target-sa \
 --project "$GCP_PROJECT" || true
 
-gcloud iam service-accounts keys create credentials.json \
---iam-account oas-mock-target-sa@"$GCP_PROJECT".iam.gserviceaccount.com
-
-# Get the GCP SA Key from the credentials.json file
-GCP_SA_KEY=$(jq '. | tostring' < "./credentials.json")
-
 gcloud run services add-iam-policy-binding apigee-mock-target \
 --region "$GCP_REGION" \
 --member serviceAccount:oas-mock-target-sa@"$GCP_PROJECT".iam.gserviceaccount.com \
 --role roles/run.invoker \
 --platform managed
 
-###
-# Deploy Shared Flow to manage JWT token 
-###
-
-sh "$SCRIPTPATH"/../../references/gcp-sa-auth-shared-flow/deploy.sh --googleapi
 
 ###
 # Generate the Apigee Proxy
@@ -152,12 +99,8 @@ sh "$SCRIPTPATH"/../../references/gcp-sa-auth-shared-flow/deploy.sh --googleapi
 
 cp -r "$SCRIPTPATH"/proxy api-proxy-v1
 
-# generate edge.json file
-generate_edge_json "$APIGEE_X_ENV"
-
 sed -i.bak "s|@TargetURL@|$TARGET_URL|" ./api-proxy-v1/apiproxy/targets/default.xml
-sed -i.bak "s|@TargetURL@|$TARGET_URL|" ./api-proxy-v1/apiproxy/policies/AM.GCPAudience.xml
-rm ./api-proxy-v1/apiproxy/targets/default.xml.bak ./api-proxy-v1/apiproxy/policies/AM.GCPAudience.xml.bak
+rm ./api-proxy-v1/apiproxy/targets/default.xml.bak 
 
 ###
 # deploy apigee proxy to Apigee X or hybrid
@@ -165,7 +108,7 @@ rm ./api-proxy-v1/apiproxy/targets/default.xml.bak ./api-proxy-v1/apiproxy/polic
 echo "[INFO] Deploying Mock Target Proxy to Google API (For X/hybrid)"
 APIGEE_TOKEN=$(gcloud auth print-access-token);
 
-sackmesser deploy --googleapi -o "$APIGEE_X_ORG" -e "$APIGEE_X_ENV" -t "$APIGEE_TOKEN" -h "$APIGEE_X_HOSTNAME" -d "$SCRIPTPATH/api-proxy-v1"
+sackmesser deploy --googleapi -o "$APIGEE_X_ORG" -e "$APIGEE_X_ENV" -t "$APIGEE_TOKEN" -h "$APIGEE_X_HOSTNAME" -d "$SCRIPTPATH/api-proxy-v1" --deployment-sa oas-mock-target-sa@"$GCP_PROJECT".iam.gserviceaccount.com
 
 ### print result
 echo "Successfully deployed Mock Target ($OPEN_API_SPEC_MOCK) for Apigee API Proxy"

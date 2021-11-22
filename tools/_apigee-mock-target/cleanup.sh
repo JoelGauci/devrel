@@ -37,10 +37,15 @@ rm -r "$SCRIPTPATH"/api-proxy-v1
 # Remove Dockerfile
 rm Dockerfile
 
-# Remove credentials.json
-rm credentials.json
+###
+# delete the API proxy proxy from Apigee X or hybrid
+###
+echo "[INFO] Deleting Mock Target Proxy from Apigee (X/hybrid)"
+APIGEE_TOKEN=$(gcloud auth print-access-token);
+sackmesser clean --googleapi -t "$APIGEE_TOKEN" proxy apigee-oas-target-v1
 
 # Cleanup  GCP Assets
 gcloud run services delete apigee-mock-target --region "$GCP_REGION" -q
 gcloud iam service-accounts delete oas-mock-target-sa@"$GCP_PROJECT".iam.gserviceaccount.com --project "$GCP_PROJECT" -q
+
 

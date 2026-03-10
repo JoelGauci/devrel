@@ -1,5 +1,165 @@
 # Changelog
 
+## [1.21.0](https://github.com/apigee/devrel/compare/v1.20.0...v1.21.0) (2024-12-20)
+
+
+### Features
+
+* add curl to Docker image ([e1c307e](https://github.com/apigee/devrel/commit/e1c307e6dc1659cd164a0fdf6ae13b046e31774b))
+* add docker to image ([a4c4f8d](https://github.com/apigee/devrel/commit/a4c4f8df47687661bf786dec8ec507793f56aab0))
+* allow for selective pipeline ([3b93916](https://github.com/apigee/devrel/commit/3b93916de0a2fbfb81d8f15e3861642d20dfbe24))
+* base pipeline builder off alpine ([141cbc3](https://github.com/apigee/devrel/commit/141cbc36aa3b5eb79a0b2a5d0528a4252184e326))
+
+
+### Bug Fixes
+
+* add --no-gpu to fix puppeteer regression in alpine ([6c3ada5](https://github.com/apigee/devrel/commit/6c3ada5ad94d32109e9dafcd30a1ec5cf5efa03a))
+* add dbus to chromium ([e30621b](https://github.com/apigee/devrel/commit/e30621bbe2bb4fb914e04d724327fd67cb938620))
+* broken link linter fix ([eef26f4](https://github.com/apigee/devrel/commit/eef26f445eb9e7479035ac5f19bdebd9f5031e26))
+* clean up ([9a3a12b](https://github.com/apigee/devrel/commit/9a3a12b7d63a1fe92c409aa188b88c85d580b1ef))
+* deprecate GCR repo ([6dbcc00](https://github.com/apigee/devrel/commit/6dbcc00354d97b046691b4090d77043fac67eae4))
+* proper error handling ([b2d2568](https://github.com/apigee/devrel/commit/b2d25685a8d7082ad7d96867d500b003947a6564))
+* proper error handling ([6446826](https://github.com/apigee/devrel/commit/6446826e934e8266d3a18cddba25a36f7bb87bfa))
+
+## [1.20.0](https://github.com/apigee/devrel/compare/v1.19.0...v1.20.0) (2024-11-20)
+
+
+### Features
+
+* add reference openapi mock apiproxy implementation ([1bc7966](https://github.com/apigee/devrel/commit/1bc79663728d044b96d583507658a59dc97d7494))
+
+
+### Bug Fixes
+
+* added more fault names ([31628f7](https://github.com/apigee/devrel/commit/31628f7fa65e41a99159a4d487761986bc24ba4f))
+* make proxy main XML file as minimal as possible ([ef36ce5](https://github.com/apigee/devrel/commit/ef36ce5507505b265e635d4c05f91f1d393cd71c))
+* use APIGEE_X_HOSTNAME env var ([1eb0d1a](https://github.com/apigee/devrel/commit/1eb0d1ac222d7a937e69cfb970d1bc9dc2aa0ed8))
+
+## [1.19.0](https://github.com/apigee/devrel/compare/v1.18.1...v1.19.0) (2024-07-11)
+
+
+### Features
+
+* deploy grpc gateway to cloud run with an apigee proxy ([5e5a9ed](https://github.com/apigee/devrel/commit/5e5a9edd78b361aa9c94ef625953119d93bd1cea))
+* initial import grpc-gateway-generator ([18c2bc8](https://github.com/apigee/devrel/commit/18c2bc864955e140fcec6dffbe2e1ff0ed786c9f))
+* pipeline.sh for gRPC gateway generator ([134af47](https://github.com/apigee/devrel/commit/134af47eb1fab2770eefe569d82f0bffa9e10208))
+* updated the sequence diagram ([3f9ec2b](https://github.com/apigee/devrel/commit/3f9ec2b6d84abbebe71d6debdbfd431cea70dc59))
+
+
+### Bug Fixes
+
+* cURL fail for pipeline.sh ([328b46b](https://github.com/apigee/devrel/commit/328b46bc07c4fb326db6839bb13dfdb2329e15f1))
+* use correct project fwhen checking forartifact registry ([a86206b](https://github.com/apigee/devrel/commit/a86206bfc019a33b7aa17d96fbd847f36782905e))
+* use existing service account and switch the gcp project for artifact registry and run ([12838bc](https://github.com/apigee/devrel/commit/12838bc2b9b5f65598c872e622ffce66a0a4dbfb))
+
+## [1.18.1](https://github.com/apigee/devrel/compare/v1.18.0...v1.18.1) (2024-06-17)
+
+
+### Bug Fixes
+
+* fixed distutils module issue ([1d0c6f7](https://github.com/apigee/devrel/commit/1d0c6f7dbd014672ba8540d38dadb3138f573042))
+* gcp sa flow key cleanup ([1d000aa](https://github.com/apigee/devrel/commit/1d000aa6212fb506a633b22cfc6f84b9d79fc7cd))
+
+## [1.18.0](https://github.com/apigee/devrel/compare/v1.17.0...v1.18.0) (2024-03-25)
+
+
+### Features
+
+* added offboard option to delete proxy, gcp metrics and dashboards ([4e1b9cc](https://github.com/apigee/devrel/commit/4e1b9cccd19aff3e380fec783f14f81dad6d2e73))
+* added support for ADC and option to store scan output data in gcs or local file ([9218f64](https://github.com/apigee/devrel/commit/9218f64247864495948f80252cebfda436ce4872))
+* enable monitoring dashboard and alerting policy ([77ccf13](https://github.com/apigee/devrel/commit/77ccf13f8e5fa2f3681c65ed8844411f11f7ab4f))
+* push data to stackdriver ([4bdab1a](https://github.com/apigee/devrel/commit/4bdab1a17f6e0a38d5fd074a6690b2821abe2e78))
+* remove configurable proxy generator because of deprecation ([f8c84e7](https://github.com/apigee/devrel/commit/f8c84e753fa6d3a8e86d5a6d9c2d1e7676931ecc))
+* updated arguments and enabled gcs for outputs ([f399e70](https://github.com/apigee/devrel/commit/f399e70c1ab4478d7c570b8f151382b00457d4c4))
+
+
+### Bug Fixes
+
+* added install gcloud beta component in pipeline.sh ([a0ec366](https://github.com/apigee/devrel/commit/a0ec366159f4981966b4063c05d9a4d5c52c10fb))
+* fixed create notification channel script ([87e2d55](https://github.com/apigee/devrel/commit/87e2d55e913e28588d7eb88bba6dfb3d7da3229a))
+* fixed linting and license headers ([f8333ef](https://github.com/apigee/devrel/commit/f8333ef98f28f044385ba0498c0e9f4e363d7e64))
+* fixed pipeline.sh ([0d75949](https://github.com/apigee/devrel/commit/0d75949453a92728450829aca8f1605076ef6ccc))
+* fixed README.md and get_status function ([258928f](https://github.com/apigee/devrel/commit/258928fbe1d43cf23c3cb96904428497a92a5b50))
+* updated README and logger prints ([6746a8c](https://github.com/apigee/devrel/commit/6746a8ced7112f3586f62323ac8c7cc262ec7bb9))
+* updated requirements.txt and utilities.py ([7f4e8e6](https://github.com/apigee/devrel/commit/7f4e8e6fd2724e2cf2e1ccf41efd2d34247c2333))
+
+## [1.17.0](https://github.com/apigee/devrel/compare/v1.16.0...v1.17.0) (2024-01-26)
+
+
+### Features
+
+* bump MVN plugin versions in sackmesser ([bdc8ca9](https://github.com/apigee/devrel/commit/bdc8ca9cd112224e9d03a4c3663496dd874822d3))
+* remove kvm-admin API polyfill as it's now supported in the product for a while ([524afe6](https://github.com/apigee/devrel/commit/524afe65966a50ecb4d27871bbfc8cabf4538966))
+
+## [1.16.0](https://github.com/apigee/devrel/compare/v1.15.1...v1.16.0) (2024-01-24)
+
+
+### Features
+
+* added run_parallel functions and logger for logging ([75ad51c](https://github.com/apigee/devrel/commit/75ad51c6c24c1fb8d669c72e87e99c2ce458ad78))
+* added support for multiple proxy split ([2e30f5e](https://github.com/apigee/devrel/commit/2e30f5e2dac846b9dd001b3470da6d8b6de152ad))
+* moved proxy bundle ([7c50710](https://github.com/apigee/devrel/commit/7c50710e679f13e3850dcb3957f88f3527367f3a))
+* request payload converted to json & added json threat protection policy ([4bf4115](https://github.com/apigee/devrel/commit/4bf41157e659bcee0525e4a7ea49120167f31940))
+
+
+### Bug Fixes
+
+* added venv in pipeline.sh ([1db14cc](https://github.com/apigee/devrel/commit/1db14cc9f33fa94d500f96ea44c8f111d09fc3e0))
+* added virtualenv to pipeline.sh ([a9ccfe8](https://github.com/apigee/devrel/commit/a9ccfe8339ecdde042a83a83761e1a4bcb6a201d))
+* deleted jar files and updated dependencies ([5b5b4e5](https://github.com/apigee/devrel/commit/5b5b4e5212cb8a6bddd98494227b9b6bde2df9e9))
+* fixed _cached_hosts issue ([0131a34](https://github.com/apigee/devrel/commit/0131a3446db32c334a77e471d5b2e3d6b303170e))
+* fixed the target proxy Apigee type ([3b0dcc5](https://github.com/apigee/devrel/commit/3b0dcc5b3a5751a048537a0d2830724afc028127))
+* removed csv headers from read rows ([83f4c98](https://github.com/apigee/devrel/commit/83f4c9865ee8ce496251d47a967229503f798791))
+* updated library to gson ([4f0be35](https://github.com/apigee/devrel/commit/4f0be35687e5bdb89ab6e5f3f4043dd5345cd9c5))
+
+## [1.15.1](https://github.com/apigee/devrel/compare/v1.15.0...v1.15.1) (2023-10-18)
+
+
+### Bug Fixes
+
+* change policy name for consistency ([31e3895](https://github.com/apigee/devrel/commit/31e3895f26041a4f3465ec7426838e94c52cdfc1))
+* failing nightly because of jenkins version incompatibility ([d0ffaf1](https://github.com/apigee/devrel/commit/d0ffaf1d27ad0eee6981abb77b3b1c2ffa028bad))
+* fix javax-mail-api jenksin pugin version ([adcbd19](https://github.com/apigee/devrel/commit/adcbd195535026ee768757911a14939d86cbbcb6))
+* modification after review of the reference ([1815507](https://github.com/apigee/devrel/commit/18155077fbd5316a18ac6e2f9a67952239f7c527))
+* rename flow callout policies for consistency ([5eabb2b](https://github.com/apigee/devrel/commit/5eabb2bf1bc85f3060a1a3e4e07abb9aa0a5c25f))
+
+## [1.15.0](https://github.com/apigee/devrel/compare/v1.14.0...v1.15.0) (2023-09-25)
+
+
+### Features
+
+* updated gitingore ([a5c11b2](https://github.com/apigee/devrel/commit/a5c11b23f01531dbc6e44f3a74b935d014bba268))
+
+
+### Bug Fixes
+
+* added minor fixes to api re-deployment ([ef438a2](https://github.com/apigee/devrel/commit/ef438a21f762f5f60e61ae4e46e4bac9af6c6526))
+
+## [1.14.0](https://github.com/apigee/devrel/compare/v1.13.0...v1.14.0) (2023-09-20)
+
+
+### Features
+
+* added javacallout build to pipeline ([4590268](https://github.com/apigee/devrel/commit/4590268294aa7057fdd73244168c1f8f40010a7e))
+* added the java-callout resource for target server validator ([143d27d](https://github.com/apigee/devrel/commit/143d27dc89e8b1ea635037196992d809eeed64f0))
+* Added wrappers for target-server-validator ([da88426](https://github.com/apigee/devrel/commit/da8842641e32ebd0896e6bbeaff7710f1ae1fb0b))
+* disabled mypy check ([ec60898](https://github.com/apigee/devrel/commit/ec6089814159e5f427aa5b75b9b9958afdcc5475))
+* renamed wrappers ([4f6b06f](https://github.com/apigee/devrel/commit/4f6b06f6befe2796439a494403fb696e51c0c4de))
+* updated in-solidarity.yml ([a83d4b0](https://github.com/apigee/devrel/commit/a83d4b018fcdb2fa71945e68e811c6d4967e420b))
+
+
+### Bug Fixes
+
+* addressed PR comments ([2d9387a](https://github.com/apigee/devrel/commit/2d9387af1f71b67b16e3c3aa8cd9301c22510ec3))
+* Fixed CODEOWNERS file ([733a807](https://github.com/apigee/devrel/commit/733a807788c39677bf93f83d204521c4f584fffc))
+* fixed CODEOWNERS, Readme ([18dfdb6](https://github.com/apigee/devrel/commit/18dfdb688f5749d1200afb051e09807d6d08a355))
+* fixed java , python lint issues ([541877d](https://github.com/apigee/devrel/commit/541877dd4555f6b3566ae92a5c882a76c9d1766d))
+* fixed policy naming & gitignore ([a56f446](https://github.com/apigee/devrel/commit/a56f446be3e740dec9b26d74966c653946ba9993))
+* fixed PR comments ([8efa176](https://github.com/apigee/devrel/commit/8efa176bae176173f7d239939b2c3ceb554df17d))
+* fixed pyline issues ([6d17716](https://github.com/apigee/devrel/commit/6d177168406a4a3e573301d329b0e11102e6af57))
+* fixed pylint errors ([f05d807](https://github.com/apigee/devrel/commit/f05d807f532782c221e295a768e7a3b79219ee42))
+* only try to delete untagged images ([38754e0](https://github.com/apigee/devrel/commit/38754e0c38f26509da42635b9802dcbbc3788d43))
+
 ## [1.13.0](https://github.com/apigee/devrel/compare/v1.12.0...v1.13.0) (2023-08-17)
 
 

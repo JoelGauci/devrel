@@ -1,9 +1,15 @@
 **/node_modules/**
 **/generated/**
-
 .settings
 .project
 .classpath
 .vscode
 .DS_Store
 *.jar
+*.iml
+.idea
+__pycache__/
+test/transformed/
+test/transformed_zipped_bundles/
+venv/
+.venv/

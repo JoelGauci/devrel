@@ -1,4 +1,19 @@
 # Apigee DevRel
+<!--
+  Copyright 2024 Google LLC
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
 
 [![In Solidarity](https://github.com/jpoehnelt/in-solidarity-bot/raw/main/static//badge-flat.png)](https://github.com/apps/in-solidarity)
 
@@ -46,8 +61,6 @@ further to fit a particular use case.
 - [Identity Facade](references/identity-facade) -
   Reference implementation for an Identity Facade proxy in front of an OIDC
   compliant identity provider
-- [KVM Admin API](references/kvm-admin-api) -
-  Generic API proxy to provide Create, Read and Delete operations for KVMs
 - [OAuth Admin API](references/oauth-admin-api) -
   API proxy to enable the revocation of Apigee-issued access tokens by
   application or end user id.
@@ -59,6 +72,10 @@ further to fit a particular use case.
   popular API auth schemes
 - [reCAPTCHA enterprise](references/recaptcha-enterprise) - A reference for
   API protection against bot leveraging reCAPTCHA enterprise
+- [Firestore Facade](references/firestore-facade) - Reference implementation
+  for a long term caching/storage solution based on Cloud Firestore
+- [OpenAPI Mock](references/openapi-mock) - Reference implementation
+    for creating a mock API proxy from an OpenAPI 3 specification
 
 ## Tools
 
@@ -81,9 +98,6 @@ Apigee products.
   A kickstart script to integrate OpenLegacy, Apigee and Cloud Run
 - [OpenAPI to Apigee Mock Proxy](tools/oas-apigee-mock) -
   A utility to generate an Apigee Proxy bundle with mock responses from a spec
-- [OpenAPI to Configurable Proxy](tools/oas-configurable-proxy) -
-  A tool to generate configurable proxy archives from an OpenAPI
-  Specification
 - [Cloud Endpoints OpenAPI Importer](tools/endpoints-oas-importer) -
   A utility to generate Apigee Proxies based on OAS with Cloud Endpoints OAS
   extensions
@@ -93,7 +107,14 @@ Apigee products.
   A tool to set up the sample deployments of Apigee Envoy.
 - [Apigee API Proxy Endpoint Unifier](tools/proxy-endpoint-unifier) -
   A tool to unify/split proxy endpoints based on API basepath.
-
+- [Apigee Target Server Validator](tools/target-server-validator) -
+  A tool to validate all targets in Target Servers & Apigee API Proxy Bundles.
+- [gRPC to HTTP Gateway Generator](tools/grpc-http-gateway-generator) -
+  Generate gateways to expose gRPC services with HTTP API management.
+- [Apigee Proxy Bundle Modifier & Validator](tools/apigee-proxy-modifier-validator) -
+  A tool to do batch modifications of API proxies when migrating to newer Apigee variants.
+- [Apigee Edge to X Migration Accelerator](/tools/apigee-edge-to-x-migration-tool) - A tool built on node.js to accelerate Apigee Edge to X migration.
+  
 ## Labs
 
 This folder contains raw assets used to generate content to teach a particular
